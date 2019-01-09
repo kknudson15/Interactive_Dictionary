@@ -19,18 +19,20 @@ data = json.load(open("data.json"))
 def dict_search(word):
     '''
     The function handles the lookup of the word that the user enters.
-    The function handles proper nouns, incorrect entries and offers
+    The function handles proper nouns, Acronyms,  incorrect entries and offers
     suggestions if the input closely matches something in the data.
-    
+
     Inputs: A string word that the user is trying to lookup
     Outputs: returns a list of definitions or a string with a message
     '''
     word = word.lower()
-    if word in data:
+    if word in data: #General Case
         return data[word]
-    elif word.title() in data:
+    elif word.title() in data: #Proper Nouns
         return data[word.title()]
-    elif len(get_close_matches(word, data.keys())) > 0:
+    elif w.upper() in data: #Acronyms
+        return data[w.upper()]
+    elif len(get_close_matches(word, data.keys())) > 0: #Close matches
         answer = input("Did you mean %s instead? Enter Y if yes and N if no: "  % get_close_matches(word, data.keys())[0])
         if answer.lower() == 'y':
             return data[get_close_matches(word, data.keys())[0]]
@@ -39,7 +41,7 @@ def dict_search(word):
         else:
             return "We did not understand the response"
 
-    else:
+    else: #Nothing found in the data
         return "The word does not exist. Double check the word"
 
 #main program operation
