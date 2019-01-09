@@ -22,6 +22,11 @@ def dict_search(word):
     else:
         return "The word does not exist. Double check the word"
 
-word = input('What word would you like to look up?')
+word = input('What word would you like to look up? ')
 definition = dict_search(word)
-print(definition)
+
+if type(definition) == list:
+    for definition in definition:
+        print(definition)
+else:
+    print(definition)
