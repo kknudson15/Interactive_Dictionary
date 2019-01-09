@@ -30,8 +30,8 @@ def dict_search(word):
         return data[word]
     elif word.title() in data: #Proper Nouns
         return data[word.title()]
-    elif w.upper() in data: #Acronyms
-        return data[w.upper()]
+    elif word.upper() in data: #Acronyms
+        return data[word.upper()]
     elif len(get_close_matches(word, data.keys())) > 0: #Close matches
         answer = input("Did you mean %s instead? Enter Y if yes and N if no: "  % get_close_matches(word, data.keys())[0])
         if answer.lower() == 'y':
