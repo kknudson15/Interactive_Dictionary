@@ -11,7 +11,14 @@ def dict_search(word):
     if word in data:
         return data[word]
     elif len(get_close_matches(word, data.keys())) > 0:
-        return "Did you mean %s instead?" % get_close_matches(word, data.keys())[0]
+        answer = input("Did you mean %s instead? Enter Y if yes and N if no: "  % get_close_matches(word, data.keys())[0])
+        if answer.lower() == 'y':
+            return data[get_close_matches(word, data.keys())[0]]
+        elif answer.lower() == 'n':
+            return "The word does not exist. Double check the word"
+        else:
+            return "We did not understand the response"
+
     else:
         return "The word does not exist. Double check the word"
 
